@@ -1,0 +1,83 @@
+[
+ {
+  "id": "sample_01",
+  "kicker": "Layout test \u00b7 Photo",
+  "headline": "Sample headline for the cover design with a photo",
+  "highlight": "cover design",
+  "summary": "Placeholder summary used only to check how the design looks. It is not a real news story.",
+  "key_points": [
+   "First placeholder point to check the list style.",
+   "Second placeholder point, a little longer to test wrapping on two lines.",
+   "Third placeholder point."
+  ],
+  "source": "Sample",
+  "credit": "Sample / Test",
+  "date": "23 Nov 2026",
+  "image": "../work/2026-11-23_1607-04.jpg",
+  "template": "tpf-cover"
+ },
+ {
+  "id": "sample_02",
+  "kicker": "Layout test \u00b7 Light",
+  "headline": "Sample headline for the light design with a photo",
+  "highlight": "light design",
+  "summary": "Placeholder summary used only to check how the design looks. It is not a real news story.",
+  "source": "Sample",
+  "credit": "Sample / Test",
+  "date": "23 Nov 2026",
+  "image": "../work/2026-11-23_1607-04.jpg",
+  "template": "tpf-light"
+ },
+ {
+  "id": "sample_03",
+  "kicker": "Layout test \u00b7 Text only",
+  "headline": "Sample headline for the text-only design with no photo at all",
+  "highlight": "text-only design",
+  "summary": "Placeholder summary used only to check how the design looks. It is not a real news story.",
+  "key_points": [
+   "Placeholder point one.",
+   "Placeholder point two."
+  ],
+  "source": "Sample",
+  "date": "23 Nov 2026",
+  "template": "tpf-type"
+ },
+ {
+  "id": "sample_04",
+  "kicker": "Layout test \u00b7 Quote",
+  "headline": "Context line for the quote design goes here",
+  "summary": "Placeholder.",
+  "quote": "This is a placeholder quotation used only to check how the quote design looks on the feed.",
+  "speaker": "Speaker name, Role",
+  "source": "Sample",
+  "date": "23 Nov 2026",
+  "template": "tpf-quote"
+ },
+ {
+  "id": "sample_05",
+  "kicker": "Layout test \u00b7 Figure",
+  "headline": "Sample headline for the big number design",
+  "highlight": "big number",
+  "summary": "Placeholder summary used only to check how the design looks. It is not a real news story.",
+  "stat": {
+   "value": "42%",
+   "label": "Placeholder figure label"
+  },
+  "source": "Sample",
+  "date": "23 Nov 2026",
+  "template": "tpf-stat"
+ },
+ {
+  "id": "sample_06",
+  "kicker": "Layout test \u00b7 Breaking",
+  "breaking": true,
+  "headline": "Sample breaking headline over a full photo",
+  "highlight": "breaking headline",
+  "summary": "Placeholder summary used only to check how the design looks. It is not a real news story.",
+  "source": "Sample",
+  "credit": "Sample / Test",
+  "date": "23 Nov 2026",
+  "image": "../work/2026-11-23_1607-04.jpg",
+  "template": "tpf-breaking"
+ }
+]

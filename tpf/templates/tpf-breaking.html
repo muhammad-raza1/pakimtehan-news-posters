@@ -1,0 +1,23 @@
+{% extends "_layout.html" %}
+{# Full-bleed photo under a black fade, giant white headline, highlight as a white block. Needs a photo. #}
+{% block style %}
+.bg { position: absolute; inset: 0; }
+.bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 24%, rgba(0,0,0,.3) 42%, rgba(0,0,0,.93) 68%, #000 100%); }
+.photo { filter: grayscale(1) contrast(1.1); }
+.top { position: absolute; top: 52px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; }
+.txt { position: absolute; left: 60px; right: 60px; top: 540px; bottom: 130px; display: flex; flex-direction: column; justify-content: flex-end; }
+h1 { margin-top: 24px; font: 400 112px/1.08 var(--display); text-transform: uppercase; max-height: 440px; }
+.sum { margin-top: 26px; font: 500 28px/1.42 var(--sans); color: #e6e6e6; max-height: 150px; }
+{% endblock %}
+{% block body %}
+<div class="poster">
+  <div class="bg" data-field="photo"><img class="photo" src="{{ p.image }}"></div>
+  <div class="top"><img class="logo" src="{{ root }}/tpf/assets/tpf-logo-white.png"><span class="date" data-field="date">{{ p.date }}</span></div>
+  <div class="txt">
+    <div><span class="pill" data-field="kicker">{{ 'Breaking' if p.breaking else p.kicker }}</span></div>
+    <h1 data-field="headline" data-fit="440" data-min="56">{{ p.headline_html }}</h1>
+    <p class="sum" data-field="summary" data-fit="150" data-min="20">{{ p.summary }}</p>
+  </div>
+  <div class="foot"><b>The Prime Feed</b><span data-field="source">Source: {{ p.source }}</span>{% if p.credit %}<span class="credit" data-field="credit">Photo: {{ p.credit }}</span>{% endif %}</div>
+</div>
+{% endblock %}

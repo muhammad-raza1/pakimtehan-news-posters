@@ -1,0 +1,20 @@
+{% extends "_layout.html" %}
+{# A quotation, large, in serif italic on black. Needs a quote. #}
+{% block style %}
+.top { position: absolute; top: 56px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; }
+.mark { position: absolute; left: 50px; top: 170px; font: 400 420px/1 var(--display); color: var(--red); }
+.q { position: absolute; left: 60px; right: 60px; top: 400px; font: italic 400 78px/1.12 var(--serif); max-height: 520px; }
+.who { position: absolute; left: 60px; right: 60px; top: 960px; display: flex; align-items: center; gap: 22px; font: 800 26px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+.who::before { content: ""; width: 80px; height: 8px; background: var(--red); }
+.ctx { position: absolute; left: 60px; right: 60px; top: 1030px; font: 500 28px/1.4 var(--sans); color: #cfcfcf; max-height: 130px; }
+{% endblock %}
+{% block body %}
+<div class="poster">
+  <div class="top"><img class="logo" src="{{ root }}/tpf/assets/tpf-logo-white.png"><span class="date" data-field="date">{{ p.date }}</span></div>
+  <div class="mark">&ldquo;</div>
+  <div class="q" data-field="quote" data-fit="520" data-min="40">{{ p.quote }}</div>
+  <div class="who" data-field="speaker">{{ p.speaker or p.kicker }}</div>
+  <div class="ctx" data-field="headline" data-fit="130" data-min="20">{{ p.headline }}</div>
+  <div class="foot"><b>The Prime Feed</b><span data-field="source">Source: {{ p.source }}</span></div>
+</div>
+{% endblock %}

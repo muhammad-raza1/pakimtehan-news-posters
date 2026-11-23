@@ -1,0 +1,23 @@
+{% extends "_layout.html" %}
+{# Photo on top with the logo over it, black panel below with headline and three key points. Needs a photo. #}
+{% block style %}
+.pic { position: absolute; left: 0; right: 0; top: 0; height: 600px; overflow: hidden; }
+.pic .photo { filter: grayscale(1) contrast(1.12); }
+.pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, #050505 100%); }
+.top { position: absolute; top: 52px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; z-index: 2; }
+.panel { position: absolute; left: 60px; right: 60px; top: 566px; bottom: 120px; display: flex; flex-direction: column; }
+h1 { margin-top: 22px; font: 400 88px/1.08 var(--display); text-transform: uppercase; max-height: 300px; }
+.pts { margin-top: 30px; color: #e8e8e8; max-height: 290px; overflow: hidden; }
+{% endblock %}
+{% block body %}
+<div class="poster">
+  <div class="pic" data-field="photo"><img class="photo" src="{{ p.image }}"></div>
+  <div class="top"><img class="logo" src="{{ root }}/tpf/assets/tpf-logo-white.png"><span class="date" data-field="date">{{ p.date }}</span></div>
+  <div class="panel">
+    <div><span class="pill" data-field="kicker">{{ 'Breaking' if p.breaking else p.kicker }}</span></div>
+    <h1 data-field="headline" data-fit="300" data-min="52">{{ p.headline_html }}</h1>
+    {% if p.key_points %}<ul class="pts" data-field="summary">{% for k in p.key_points|head(3) %}<li>{{ k }}</li>{% endfor %}</ul>{% else %}<p class="pts" style="font:500 28px/1.42 var(--sans)" data-field="summary">{{ p.summary }}</p>{% endif %}
+  </div>
+  <div class="foot"><b>The Prime Feed</b><span data-field="source">Source: {{ p.source }}</span>{% if p.credit %}<span class="credit" data-field="credit">Photo: {{ p.credit }}</span>{% endif %}</div>
+</div>
+{% endblock %}

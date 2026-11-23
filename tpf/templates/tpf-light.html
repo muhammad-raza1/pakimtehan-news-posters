@@ -1,0 +1,25 @@
+{% extends "_layout.html" %}
+{# Off-white card with black type: the one light design, for variety in the feed. Photo optional. #}
+{% block style %}
+body { background: var(--paper); }
+.poster { background: var(--paper); }
+.top { position: absolute; top: 52px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; }
+.top .date { color: #555; }
+.pic { position: absolute; left: 60px; right: 60px; top: 150px; height: 470px; background: #000; overflow: hidden; }
+.pic .photo { filter: grayscale(1) contrast(1.1); }
+.txt { position: absolute; left: 60px; right: 60px; top: {{ '650px' if p.image else '170px' }}; bottom: 120px; display: flex; flex-direction: column; }
+h1 { margin-top: 22px; font: 400 {{ '88px' if p.image else '124px' }}/1.08 var(--display); text-transform: uppercase; }
+.sum { margin-top: 24px; font: 500 27px/1.42 var(--sans); color: #333; }
+{% endblock %}
+{% block body %}
+<div class="poster light">
+  <div class="top"><img class="logo" src="{{ root }}/tpf/assets/tpf-logo-black.png"><span class="date" data-field="date">{{ p.date }}</span></div>
+  {% if p.image %}<div class="pic" data-field="photo"><img class="photo" src="{{ p.image }}"></div>{% endif %}
+  <div class="txt">
+    <div><span class="pill" data-field="kicker">{{ 'Breaking' if p.breaking else p.kicker }}</span></div>
+    <h1 data-field="headline" data-fit="{{ 330 if p.image else 640 }}" data-min="52">{{ p.headline_html }}</h1>
+    <p class="sum" data-field="summary" data-fit="{{ 150 if p.image else 260 }}" data-min="20">{{ p.summary }}</p>
+  </div>
+  <div class="foot"><b>The Prime Feed</b><span data-field="source">Source: {{ p.source }}</span>{% if p.credit and p.image %}<span class="credit" data-field="credit">Photo: {{ p.credit }}</span>{% endif %}</div>
+</div>
+{% endblock %}

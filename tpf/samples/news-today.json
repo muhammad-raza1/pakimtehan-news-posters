@@ -1,0 +1,89 @@
+[
+ {
+  "kicker": "Breaking \u00b7 Security",
+  "headline": "Two oil tankers disabled by explosions in the Strait of Hormuz, says IRGC",
+  "highlight": "Strait of Hormuz",
+  "summary": "Iran's Revolutionary Guards say two oil tankers were disabled by explosions in the Strait of Hormuz. Tehran has also warned that military bases in Europe could be targeted in a new US war.",
+  "why": "Hormuz carries roughly a fifth of global oil; disruption feeds straight into Pakistan's fuel import bill.",
+  "syllabus": [
+   "International Relations"
+  ],
+  "source": "The Express Tribune",
+  "date": "12 November 2026",
+  "image": "../../samples/img/tanker.jpg",
+  "credit": "JMSDF / Wikimedia Commons, CC BY 4.0 (file photo)"
+ },
+ {
+  "kicker": "Climate \u00b7 COP31",
+  "headline": "At COP31, PM Shehbaz calls for grant-based climate finance for vulnerable countries",
+  "highlight": "grant-based climate finance",
+  "summary": "Speaking in Antalya, the prime minister said climate-vulnerable nations need timely support that does not deepen their debt, and pressed for stronger resilience and adaptation funds.",
+  "why": "Loss-and-damage and debt-free adaptation finance are recurring essay and Current Affairs themes.",
+  "syllabus": [
+   "Environment",
+   "Current Affairs"
+  ],
+  "source": "Dawn",
+  "date": "12 Nov 2026",
+  "image": "../../samples/img/cop.jpg",
+  "credit": "Royd Moor Wind Farm, Flickr, CC BY 2.0"
+ },
+ {
+  "kicker": "Economy \u00b7 Minerals",
+  "headline": "Punjab CM says rivers hold significant evidence of placer gold",
+  "highlight": "placer gold",
+  "summary": "At the Pakistan Minerals Investment Forum in Islamabad, Maryam Nawaz pointed to Mianwali and Attock, as provinces pitched mining opportunities to domestic and foreign investors.",
+  "why": "Mineral wealth and export diversification tie into Pakistan's economic recovery debate.",
+  "syllabus": [
+   "Pakistan Affairs",
+   "Economy"
+  ],
+  "source": "Dawn, The Express Tribune",
+  "date": "12 Nov 2026",
+  "image": "../../samples/img/gold.jpg",
+  "credit": "Flickr, CC BY 2.0"
+ },
+ {
+  "kicker": "Energy",
+  "headline": "Pakistan's quiet solar revolution: 22GW of rooftop panels in two years",
+  "highlight": "22GW",
+  "summary": "Addressing a COP31 clean-energy dialogue, PM Shehbaz Sharif said ordinary citizens added nearly 22 gigawatts of rooftop solar in just two years, seeking affordable power and a cleaner, more predictable future.",
+  "why": "A ready-made example for essays on energy security, circular debt and the clean-energy transition.",
+  "syllabus": [
+   "Energy",
+   "Pakistan Affairs"
+  ],
+  "source": "Dawn",
+  "date": "Thursday, 12 November 2026",
+  "edition": "Daily Current Affairs",
+  "image": "../../samples/img/solar.jpg",
+  "credit": "Flickr, CC0"
+ },
+ {
+  "kicker": "Geopolitics \u00b7 Technology",
+  "headline": "China accuses US of using spy claims to justify a technology blockade",
+  "highlight": "technology blockade",
+  "summary": "Beijing's foreign ministry said Washington is fabricating 'spy' narratives as a pretext for restricting China's access to advanced technology, as the US-China chip rivalry deepens.",
+  "why": "US-China tech rivalry shapes global supply chains and the strategic choices facing Pakistan.",
+  "syllabus": [
+   "International Relations",
+   "Current Affairs"
+  ],
+  "source": "Dawn / AFP",
+  "date": "12 Nov 2026"
+ },
+ {
+  "kicker": "Daily Brief",
+  "headline": "Russia-Ukraine talks turn to post-war security but end without breakthrough",
+  "highlight": "without breakthrough",
+  "summary": "Talks in Abu Dhabi centred on Europe's future security framework. US envoys were due to meet Presidents Putin and Zelensky on Thursday.",
+  "why": "",
+  "syllabus": [
+   "International Relations"
+  ],
+  "source": "BBC News",
+  "date": "12 Nov 2026",
+  "image": "../../samples/img/abudhabi.jpg",
+  "credit": "Flickr, Public Domain"
+ }
+]
