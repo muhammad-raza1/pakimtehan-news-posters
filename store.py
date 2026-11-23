@@ -103,7 +103,10 @@ def cmd_push_state(date):
     if STORIES.exists():
         api("PUT", "/state/recent_stories", {"value": json.loads(STORIES.read_text())})
     from select_template import CATALOG  # the design list the dashboard's editor shows (one source of truth: catalog.yaml)
-    api("PUT", "/state/catalog", {"value": [{k: t.get(k) for k in ("id", "label", "family", "photo", "needs")} for t in CATALOG]})
+    from tpf.tpf_render import DESIGNS as TPF_DESIGNS, NEEDS_PHOTO as TPF_NEEDS_PHOTO
+    tpf = [{"id": d, "label": "TPF " + d[4:].title(), "family": "tpf", "photo": "required" if d in TPF_NEEDS_PHOTO else "optional"}
+           for d in TPF_DESIGNS]   # The Prime Feed designs; the server only offers them for TPF posters
+    api("PUT", "/state/catalog", {"value": [{k: t.get(k) for k in ("id", "label", "family", "photo", "needs")} for t in CATALOG] + tpf})
     api("PUT", "/state/last_run", {"value": date})
     api("PUT", "/state/last_run_at", {"value": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     print(f"{len(seen)} seen link(s) saved; last_run = {date}")

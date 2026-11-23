@@ -20,12 +20,14 @@ from build import ROOT, save_photo, validate
 from render import NEEDS_PHOTO, NO_PHOTO_ONLY, TEMPLATES, render
 from select_template import choose
 from story import normalize_story
+from tpf import tpf_render
 
 TEXT_FIELDS = {"kicker": 60, "headline": 140, "highlight": 80, "summary": 400, "why": 250,
                "source": 120, "credit": 160}
 
 
 def apply_changes(data, changes):
+    designs = tpf_render.DESIGNS if data.get("brand") == "tpf" else TEMPLATES
     for key, limit in TEXT_FIELDS.items():
         if key in changes and changes[key] is not None:
             data[key] = str(changes[key]).strip()[:limit]
@@ -36,7 +38,7 @@ def apply_changes(data, changes):
             if k in changes:
                 data[k] = changes[k]
         normalize_story(data)
-    if changes.get("template") in TEMPLATES or changes.get("template") == "auto":
+    if changes.get("template") in designs or changes.get("template") == "auto":
         data["template"] = changes["template"]
     if not data.get("headline"):
         raise ValueError("the headline cannot be empty")
@@ -62,17 +64,22 @@ def process(poster, topics, tmp: Path):
     else:  # remove
         data["credit"], data["image_source"] = "", ""
 
-    if data.get("template") == "auto":
-        data["template"] = choose(data, bool(photo))   # the admin asked for the best fit
-    if not photo and data.get("template") in NEEDS_PHOTO:
-        data["template"] = choose(data, False)  # the design needs a photo: take the best fit without one
-    if photo and data.get("template") in NO_PHOTO_ONLY and "template" not in (edit.get("changes") or {}):
-        data["template"] = choose(data, True)   # a new photo should be visible unless the admin chose otherwise
+    tpf = data.get("brand") == "tpf"   # The Prime Feed poster: its own designs and renderer
+    if tpf:
+        if data.get("template") == "auto":
+            data["template"] = tpf_render.choose(data, bool(photo))
+    else:
+        if data.get("template") == "auto":
+            data["template"] = choose(data, bool(photo))   # the admin asked for the best fit
+        if not photo and data.get("template") in NEEDS_PHOTO:
+            data["template"] = choose(data, False)  # the design needs a photo: take the best fit without one
+        if photo and data.get("template") in NO_PHOTO_ONLY and "template" not in (edit.get("changes") or {}):
+            data["template"] = choose(data, True)   # a new photo should be visible unless the admin chose otherwise
 
     validate(data, topics)                 # same checks as the daily run (highlight must be in headline, ...)
     data["image"] = str(photo) if photo else None
     out = tmp / pid
-    result = render([data], out, out)[0]
+    result = (tpf_render.render([data], out, out) if tpf else render([data], out, out))[0]
     data.pop("image", None)
     data["template"] = result["template"]
     data["file"] = Path(result["file"]).name

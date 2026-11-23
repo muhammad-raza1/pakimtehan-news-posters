@@ -131,6 +131,10 @@ def cmd_render():
     used = assign_templates(posts, random.Random(), recent)
     RECENT.parent.mkdir(exist_ok=True)
     RECENT.write_text(json.dumps((recent + used)[-RECENT_KEEP:]))
+    # The Prime Feed (TPF): the same stories again in the TPF designs, stored as their own posters (brand "tpf").
+    tpf_posts = [dict(p, brand="tpf", template=None) for p in posts]
+    for p in posts:
+        p["brand"] = "pakimtehan"
     for r, p in zip(render(posts, out, out), posts):
         p["file"] = Path(r["file"]).name
         p["regions"] = r.get("regions", {})
@@ -139,7 +143,18 @@ def cmd_render():
             save_photo(p["image"], out / p["photo_file"])
         p.pop("image", None)
 
-    (out / "posters.json").write_text(json.dumps(posts, ensure_ascii=False, indent=1))
+    from tpf.tpf_render import render as render_tpf
+    names = [f"T{i:02d}" for i in range(1, len(tpf_posts) + 1)]
+    for r, p in zip(render_tpf(tpf_posts, out, out, names=names), tpf_posts):
+        p["file"] = Path(r["file"]).name
+        p["template"] = r["template"]
+        p["regions"] = r.get("regions", {})
+        if p.get("image"):
+            p["photo_file"] = f"{Path(r['file']).stem}-photo.jpg"
+            save_photo(p["image"], out / p["photo_file"])
+        p.pop("image", None)
+
+    (out / "posters.json").write_text(json.dumps(posts + tpf_posts, ensure_ascii=False, indent=1))
     md = [f"# Pak Imtehan posters — {now.strftime('%A %-d %B %Y')}\n",
           "Review and approve these in the Pak Imtehan dashboard → News Posters.\n"]
     for p in posts:
