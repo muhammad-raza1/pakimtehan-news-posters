@@ -20,7 +20,7 @@ database_id = "5843fdc9-6667-4974-954a-05eb7611a228"
 # Every 2 hours: "7 */2 * * *".  Daytime only (06:07-22:07 Pakistan, hourly): "7 1-17 * * *".  Once a day at 07:40 Pakistan: "40 2 * * *".
 # A new or changed cron takes up to 15 minutes to reach Cloudflare's network. Apply with `wrangler deploy`.
 # PAUSED 17 Nov after testing; production deploy tomorrow: set back to ["7 * * * *"] and run `wrangler deploy`.
-crons = []
+crons = ["7 * * * *"]
 
 [observability]
 enabled = true

@@ -11,7 +11,7 @@
 // the server; every API call must send "Authorization: Bearer <STORE_TOKEN>").
 // Files travel as base64 strings so the Worker never converts bytes (keeps CPU time tiny).
 
-const REPO = "ehtishamnaveed/pakimtehan-news-posters";
+const REPO = "muhammad-raza1/pakimtehan-news-posters";
 const DAILY_WORKFLOW = "free-ai-posters.yml";
 const EDIT_WORKFLOW = "poster-edit.yml";
 const ID = /^\d{4}-\d{2}-\d{2}_[\w-]{1,40}$/;
