@@ -55,9 +55,9 @@ async function putFile(env, id, kind, b64) {
   await env.DB.prepare("INSERT OR REPLACE INTO files (poster_id, kind, b64) VALUES (?, ?, ?)").bind(id, kind, b64).run();
 }
 
-// Retention (client rule): posters nobody approved or rejected within RETAIN_HOURS are deleted together with
+// Retention: posters nobody approved or rejected within RETAIN_HOURS are deleted together with
 // their files, and files whose poster no longer exists are removed. Runs on every cron tick and every upload.
-const RETAIN_HOURS = 24;
+const RETAIN_HOURS = 10;
 async function cleanup(env) {
   const cutoff = new Date(Date.now() - RETAIN_HOURS * 3600000).toISOString();
   const old = await env.DB.prepare("DELETE FROM files WHERE poster_id IN (SELECT id FROM posters WHERE created_at < ?)").bind(cutoff).run();
