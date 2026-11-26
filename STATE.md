@@ -1,6 +1,6 @@
 # Where we are (keep under ~80 lines; replace stale lines, don't append history)
 
-Last updated: 2026-11-17 (evening)
+Last updated: 2026-11-26 (Worker keeps unapproved posters 24 h only; all old posters wiped; deployed, hourly cron live)
 
 ## How posters are made now
 - GitHub Action `.github/workflows/free-ai-posters.yml` runs the pipeline with free AI

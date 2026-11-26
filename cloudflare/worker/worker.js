@@ -55,13 +55,13 @@ async function putFile(env, id, kind, b64) {
   await env.DB.prepare("INSERT OR REPLACE INTO files (poster_id, kind, b64) VALUES (?, ?, ?)").bind(id, kind, b64).run();
 }
 
-// Safety net so D1 never fills up: posters nobody approved or rejected within RETAIN_DAYS are deleted
-// together with their files, and files whose poster no longer exists are removed.
-const RETAIN_DAYS = 7;
+// Retention (client rule): posters nobody approved or rejected within RETAIN_HOURS are deleted together with
+// their files, and files whose poster no longer exists are removed. Runs on every cron tick and every upload.
+const RETAIN_HOURS = 24;
 async function cleanup(env) {
-  const cutoff = new Date(Date.now() - RETAIN_DAYS * 86400000).toISOString().slice(0, 10);
-  const old = await env.DB.prepare("DELETE FROM files WHERE poster_id IN (SELECT id FROM posters WHERE date < ?)").bind(cutoff).run();
-  const posters = await env.DB.prepare("DELETE FROM posters WHERE date < ?").bind(cutoff).run();
+  const cutoff = new Date(Date.now() - RETAIN_HOURS * 3600000).toISOString();
+  const old = await env.DB.prepare("DELETE FROM files WHERE poster_id IN (SELECT id FROM posters WHERE created_at < ?)").bind(cutoff).run();
+  const posters = await env.DB.prepare("DELETE FROM posters WHERE created_at < ?").bind(cutoff).run();
   const orphans = await env.DB.prepare("DELETE FROM files WHERE poster_id NOT IN (SELECT id FROM posters)").run();
   const n = (posters.meta?.changes || 0) + (orphans.meta?.changes || 0);
   if (n) console.log(`cleanup: removed ${posters.meta?.changes || 0} old poster(s), ${orphans.meta?.changes || 0} orphan file(s)`);
